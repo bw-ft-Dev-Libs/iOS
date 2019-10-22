@@ -9,25 +9,26 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
+    // MARK: IBOutlets
+    
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var registerLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        
     }
     
+
     var loginController: LoginController?
     
     
-    //MARK: Button Tapped Outlet Action
-    
-//    guard let username = usernameTextField.text,
-//               let password = passwordTextField.text,
-//                 !username.isEmpty,
-//                  !password.isEmpty else{return}
-//
-//           let user = User(username: username, password: password)
-    
+
     
     
     
@@ -64,14 +65,40 @@ class LoginViewController: UIViewController {
        }
        
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+   
+    // MARK: Private Funcs
+    
+    private func setViews() {
+        
     }
-    */
+    
+    // MARK: IBActions
+    
+    //MARK: Button Tapped Outlet Action
+    @IBAction func loginButtonTapped(_ sender: UIButton) {
 
+        
+        guard let username = usernameTextField.text,
+                   let password = passwordTextField.text,
+                     !username.isEmpty,
+                      !password.isEmpty else{return}
+    
+        let user = User(username:username, password: password, context: CoreDataStack.share.mainContext)
+        
+        
+        
+    }
+    
+    @IBAction func registrationButtonTapped(_ sender: UIButton) {
+        
+    }
+    
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "" {
+            guard let destinationVC = segue.destination as? ProfileViewController  else {return}
+        }
+    }
 }
