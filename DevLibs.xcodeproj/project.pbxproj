@@ -21,6 +21,15 @@
 		3850A844235DEA4F009FD37A /* CreateLibViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850A843235DEA4E009FD37A /* CreateLibViewController.swift */; };
 		3850A846235DEA61009FD37A /* LibDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850A845235DEA61009FD37A /* LibDetailViewController.swift */; };
 		3850A849235DF306009FD37A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850A848235DF306009FD37A /* LoginController.swift */; };
+		45AB928D235F805C00619F0E /* Users.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 45AB928B235F805C00619F0E /* Users.xcdatamodeld */; };
+		45AB9290235F80AE00619F0E /* DevLibs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 45AB928E235F80AE00619F0E /* DevLibs.xcdatamodeld */; };
+		45AB9294235F812400619F0E /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB9293235F812400619F0E /* UserRepresentation.swift */; };
+		45AB9296235F814D00619F0E /* DevLibRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB9295235F814D00619F0E /* DevLibRepresentation.swift */; };
+		45AB9298235F81F100619F0E /* User+Convenience .swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB9297235F81F100619F0E /* User+Convenience .swift */; };
+		45AB929A235F83D000619F0E /* DevLib+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB9299235F83D000619F0E /* DevLib+Convenience.swift */; };
+		45AB929C235F867E00619F0E /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB929B235F867E00619F0E /* Bearer.swift */; };
+		45AB929E235F87A400619F0E /* DevLibController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB929D235F87A400619F0E /* DevLibController.swift */; };
+		45AB92A0235F87F200619F0E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB929F235F87F200619F0E /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +70,15 @@
 		3850A843235DEA4E009FD37A /* CreateLibViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLibViewController.swift; sourceTree = "<group>"; };
 		3850A845235DEA61009FD37A /* LibDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibDetailViewController.swift; sourceTree = "<group>"; };
 		3850A848235DF306009FD37A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		45AB928C235F805C00619F0E /* Users.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Users.xcdatamodel; sourceTree = "<group>"; };
+		45AB928F235F80AE00619F0E /* DevLibs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DevLibs.xcdatamodel; sourceTree = "<group>"; };
+		45AB9293235F812400619F0E /* UserRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepresentation.swift; sourceTree = "<group>"; };
+		45AB9295235F814D00619F0E /* DevLibRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevLibRepresentation.swift; sourceTree = "<group>"; };
+		45AB9297235F81F100619F0E /* User+Convenience .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Convenience .swift"; sourceTree = "<group>"; };
+		45AB9299235F83D000619F0E /* DevLib+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DevLib+Convenience.swift"; sourceTree = "<group>"; };
+		45AB929B235F867E00619F0E /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		45AB929D235F87A400619F0E /* DevLibController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevLibController.swift; sourceTree = "<group>"; };
+		45AB929F235F87F200619F0E /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +171,14 @@
 		3850A835235DE82E009FD37A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				45AB929F235F87F200619F0E /* CoreDataStack.swift */,
+				45AB929B235F867E00619F0E /* Bearer.swift */,
+				45AB9299235F83D000619F0E /* DevLib+Convenience.swift */,
+				45AB9297235F81F100619F0E /* User+Convenience .swift */,
+				45AB9295235F814D00619F0E /* DevLibRepresentation.swift */,
+				45AB9293235F812400619F0E /* UserRepresentation.swift */,
+				45AB928E235F80AE00619F0E /* DevLibs.xcdatamodeld */,
+				45AB928B235F805C00619F0E /* Users.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -160,6 +186,7 @@
 		3850A836235DE844009FD37A /* Model Controller */ = {
 			isa = PBXGroup;
 			children = (
+				45AB929D235F87A400619F0E /* DevLibController.swift */,
 				3850A848235DF306009FD37A /* LoginController.swift */,
 			);
 			path = "Model Controller";
@@ -326,11 +353,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				3850A842235DEA26009FD37A /* ProfileViewController.swift in Sources */,
+				45AB9298235F81F100619F0E /* User+Convenience .swift in Sources */,
+				45AB9294235F812400619F0E /* UserRepresentation.swift in Sources */,
+				45AB92A0235F87F200619F0E /* CoreDataStack.swift in Sources */,
 				3850A846235DEA61009FD37A /* LibDetailViewController.swift in Sources */,
 				3850A802235DE72C009FD37A /* AppDelegate.swift in Sources */,
+				45AB929A235F83D000619F0E /* DevLib+Convenience.swift in Sources */,
+				45AB929E235F87A400619F0E /* DevLibController.swift in Sources */,
 				3850A83C235DE955009FD37A /* KeychainItemAccessibility.swift in Sources */,
+				45AB9290235F80AE00619F0E /* DevLibs.xcdatamodeld in Sources */,
+				45AB929C235F867E00619F0E /* Bearer.swift in Sources */,
 				3850A849235DF306009FD37A /* LoginController.swift in Sources */,
 				3850A844235DEA4F009FD37A /* CreateLibViewController.swift in Sources */,
+				45AB9296235F814D00619F0E /* DevLibRepresentation.swift in Sources */,
+				45AB928D235F805C00619F0E /* Users.xcdatamodeld in Sources */,
 				3850A804235DE72C009FD37A /* SceneDelegate.swift in Sources */,
 				3850A840235DEA16009FD37A /* LoginViewController.swift in Sources */,
 				3850A83E235DE982009FD37A /* KeychainWrapper.swift in Sources */,
@@ -662,6 +698,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		45AB928B235F805C00619F0E /* Users.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				45AB928C235F805C00619F0E /* Users.xcdatamodel */,
+			);
+			currentVersion = 45AB928C235F805C00619F0E /* Users.xcdatamodel */;
+			path = Users.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		45AB928E235F80AE00619F0E /* DevLibs.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				45AB928F235F80AE00619F0E /* DevLibs.xcdatamodel */,
+			);
+			currentVersion = 45AB928F235F80AE00619F0E /* DevLibs.xcdatamodel */;
+			name = DevLibs.xcdatamodeld;
+			path = ../../DevLibs.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3850A7F6235DE72C009FD37A /* Project object */;
 }
