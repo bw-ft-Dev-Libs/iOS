@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        performSegue(withIdentifier: "LoginSegue", sender: self)
         setViews()
         libsTableView.delegate = self
         libsTableView.dataSource = self
