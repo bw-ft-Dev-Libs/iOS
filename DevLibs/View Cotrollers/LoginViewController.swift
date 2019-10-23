@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerLabel: UILabel!
+    @IBOutlet weak var registerLoginLabel: UILabel!
     
     
     var isLogin: Bool = true
@@ -28,65 +29,65 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+     
     }
     
     
     
     //MARK: ViewController SignUp + Sign In
     func signUp(with user: UserRepresentation) {
-           loginController.signUp(with: user, completion: { (error) in
-               if let error = error{
-                   NSLog("Error signing up \(error)")
-               } else {
-                   let alert = UIAlertController(title: "Sign Up Success", message: "Sign in now please", preferredStyle: .alert)
-                   
-                   let okAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
-                   
-                   alert.addAction(okAction)
-                   
-                   
-               }
-               
-           })
-           
-       }
-       
-       func signIn(with user: UserRepresentation){
-           loginController.signIn(with: user, completion: { (error) in
-               if let error = error {
-                   NSLog("Error\(error)")
-                   
-               } else {
-                   DispatchQueue.main.async {
-                       self.dismiss(animated: true, completion: nil)
-                   }
-               }
-           })
-       }
-       
-
-   
+        loginController.signUp(with: user, completion: { (error) in
+            if let error = error{
+                NSLog("Error signing up \(error)")
+            } else {
+                let alert = UIAlertController(title: "Sign Up Success", message: "Sign in now please", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+                
+                alert.addAction(okAction)
+                
+                
+            }
+            
+        })
+        
+    }
+    
+    func signIn(with user: UserRepresentation){
+        loginController.signIn(with: user, completion: { (error) in
+            if let error = error {
+                NSLog("Error: \(error)")
+                
+            } else {
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        })
+    }
+    
+    
+    
     // MARK: Private Funcs
     
     private func setViews() {
         
     }
     
-
+    
     
     //MARK:  Login Button Tapped Outlet Action
     @IBAction func loginButtonTapped(_ sender: UIButton) {
-
+        
         
         guard let username = usernameTextField.text,
-                   let password = passwordTextField.text,
-                     !username.isEmpty,
-                      !password.isEmpty else{return}
-    
+            let password = passwordTextField.text,
+            !username.isEmpty,
+            !password.isEmpty else{return}
+        
         let user = UserRepresentation(username: username, password: password)
         
-        isLogin = !isLogin
+        
         
         if isLogin == true {
             signIn(with: user)
@@ -101,18 +102,16 @@ class LoginViewController: UIViewController {
     //MARK: Register Button Tapped Outlet Action
     @IBAction func registrationButtonTapped(_ sender: UIButton) {
         
-        guard let username = usernameTextField.text,
-                       !username.isEmpty,
-             let password = passwordTextField.text,
-                       !password.isEmpty else { return }
+        isLogin = !isLogin
         
-        let user = UserRepresentation(username: username, password: password)
-        
-        loginController.signUp(with: user) { (error) in
-            if let error = error {
-                NSLog("Error logging in: \(error)")
-            }
+        if isLogin == true {
+            loginButton.setTitle("LOGIN", for: .normal)
+            registerLoginLabel.text = "If you have not registered, please click"
+        } else {
+            loginButton.setTitle("REGISTER", for: .normal)
+            registerLoginLabel.text = "If you would like to login, please click"
         }
+        
         
         
     }

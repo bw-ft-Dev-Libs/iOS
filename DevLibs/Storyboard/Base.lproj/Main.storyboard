@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oe0-7w-oaF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
@@ -147,7 +147,7 @@
                                 </state>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aO7-w3-eui"/>
-                                    <segue destination="oe0-7w-oaF" kind="show" id="S9c-8w-wU7"/>
+                                    <segue destination="oe0-7w-oaF" kind="show" identifier="LoginSegue" id="S9c-8w-wU7"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Hon-NJ-Efd">
@@ -194,6 +194,7 @@
                         <outlet property="loginButton" destination="0sl-Yk-nfA" id="RAh-t5-duN"/>
                         <outlet property="passwordTextField" destination="Wvw-f5-08a" id="rp8-Ud-idC"/>
                         <outlet property="registerLabel" destination="jnp-V9-DEF" id="Jzo-66-JP8"/>
+                        <outlet property="registerLoginLabel" destination="jnp-V9-DEF" id="pNN-h0-ZdA"/>
                         <outlet property="usernameTextField" destination="dxA-R9-d1x" id="r9c-Ba-ddo"/>
                     </connections>
                 </viewController>
@@ -497,7 +498,6 @@
         <image name="icons8-user-24" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S9c-8w-wU7"/>
         <segue reference="ILb-od-8x8"/>
     </inferredMetricsTieBreakers>
 </document>
