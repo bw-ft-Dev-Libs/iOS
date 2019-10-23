@@ -69,10 +69,10 @@ class LoginController {
             
         }
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (_ , response, error) in
             
             if let response = response as? HTTPURLResponse,
-                response.statusCode != 200 {
+                response.statusCode != 201 {
                 print(response.statusCode)
                 completion(.responseError)
                 return
