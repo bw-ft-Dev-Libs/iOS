@@ -497,6 +497,7 @@
         <image name="icons8-user-24" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="S9c-8w-wU7"/>
         <segue reference="ILb-od-8x8"/>
     </inferredMetricsTieBreakers>
 </document>

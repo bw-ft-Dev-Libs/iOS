@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import CoreData
+
+
 
 class LoginViewController: UIViewController {
     
@@ -18,23 +21,21 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var registerLabel: UILabel!
     
     
+    var isLogin: Bool = true
+    var loginController = LoginController()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
     }
     
-
-    var loginController: LoginController?
-    
-    
-
-    
     
     
     //MARK: ViewController SignUp + Sign In
     func signUp(with user: UserRepresentation) {
-           loginController?.signUp(with: user, completion: { (error) in
+           loginController.signUp(with: user, completion: { (error) in
                if let error = error{
                    NSLog("Error signing up \(error)")
                } else {
@@ -52,7 +53,7 @@ class LoginViewController: UIViewController {
        }
        
        func signIn(with user: UserRepresentation){
-           loginController?.signIn(with: user, completion: { (error) in
+           loginController.signIn(with: user, completion: { (error) in
                if let error = error {
                    NSLog("Error\(error)")
                    
@@ -72,9 +73,9 @@ class LoginViewController: UIViewController {
         
     }
     
-    // MARK: IBActions
+
     
-    //MARK: Button Tapped Outlet Action
+    //MARK:  Login Button Tapped Outlet Action
     @IBAction func loginButtonTapped(_ sender: UIButton) {
 
         
@@ -83,13 +84,36 @@ class LoginViewController: UIViewController {
                      !username.isEmpty,
                       !password.isEmpty else{return}
     
-        let user = User(username:username, password: password, context: CoreDataStack.share.mainContext)
+        let user = UserRepresentation(username: username, password: password)
+        
+        isLogin = !isLogin
+        
+        if isLogin == true {
+            signIn(with: user)
+        } else {
+            signUp(with: user)
+        }
         
         
         
     }
     
+    //MARK: Register Button Tapped Outlet Action
     @IBAction func registrationButtonTapped(_ sender: UIButton) {
+        
+        guard let username = usernameTextField.text,
+                       !username.isEmpty,
+             let password = passwordTextField.text,
+                       !password.isEmpty else { return }
+        
+        let user = UserRepresentation(username: username, password: password)
+        
+        loginController.signUp(with: user) { (error) in
+            if let error = error {
+                NSLog("Error logging in: \(error)")
+            }
+        }
+        
         
     }
     

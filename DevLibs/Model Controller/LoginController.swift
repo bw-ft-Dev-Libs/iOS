@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 enum HTTPMethod: String{
     case get = "GET"
@@ -147,6 +148,7 @@ class LoginController {
     }
     
     
+ 
    
     
 }
