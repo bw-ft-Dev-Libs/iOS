@@ -23,14 +23,18 @@ extension DevLib {
     //MARK: - Convenience Initializer
     @discardableResult convenience init(lib: String, id: Int32? = nil , categoryID: Int32? = nil , context: NSManagedObjectContext){
         
+        self.init(context: context)
+        
+
         guard let id = id,
             let categoryID = categoryID else {return}
         
-        self.init(context: context)
+        
         
         self.lib = lib
         self.id = id
         self.categoryID = categoryID
+        
     }
     
     //MARK: - Convenience Initializer for Core Data Model Representation
