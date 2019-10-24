@@ -28,25 +28,25 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setViews()
         
-     
     }
     
     
     
-    //MARK: ViewController SignUp + Sign In
+    //MARK: Method SignUp + Sign In
+    
     func signUp(with user: UserRepresentation) {
         loginController.signUp(with: user, completion: { (error) in
+    
             if let error = error{
                 NSLog("Error signing up \(error)")
-            } else {
-                let alert = UIAlertController(title: "Sign Up Success", message: "Sign in now please", preferredStyle: .alert)
-                
-                let okAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
-                
-                alert.addAction(okAction)
-                
-                
+            }
+            
+            self.loginController.signIn(with: user) { (error) in
+                if let error = error{
+                    NSLog("Error signing up \(error)")
+                }
             }
             
         })
@@ -71,12 +71,13 @@ class LoginViewController: UIViewController {
     // MARK: Private Funcs
     
     private func setViews() {
-        
+        passwordTextField.isSecureTextEntry = true
     }
     
     
     
-    //MARK:  Login Button Tapped Outlet Action
+    //MARK:  IBActions
+    
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         
         
@@ -99,7 +100,6 @@ class LoginViewController: UIViewController {
         
     }
     
-    //MARK: Register Button Tapped Outlet Action
     @IBAction func registrationButtonTapped(_ sender: UIButton) {
         
         isLogin = !isLogin

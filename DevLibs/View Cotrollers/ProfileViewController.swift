@@ -16,37 +16,51 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var addLibButton: UIButton!
     @IBOutlet weak var libsTableView: UITableView!
     
+    //MARK: Properties
+    
+    
+    let token: String? = KeychainWrapper.standard.string(forKey: "bearer")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        performSegue(withIdentifier: "LoginSegue", sender: self)
         setViews()
         libsTableView.delegate = self
         libsTableView.dataSource = self
     }
     
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        DispatchQueue.main.async {
+            if self.token == nil {
+                self.performSegue(withIdentifier: "LoginSegue", sender: self)
+            }
+        }
+    }
+    
+    
     //MARK: - Fetch Results Controller
     lazy var fetchResultController: NSFetchedResultsController<DevLib> = {
-           
-           //Create Fetch request
-           let fetchRequest: NSFetchRequest<DevLib> = DevLib.fetchRequest()
-           
-           //Sort the fetched results
-           fetchRequest.sortDescriptors = [NSSortDescriptor(key: "lib", ascending: true)]
-           
-           let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.share.mainContext, sectionNameKeyPath: "lib", cacheName: nil)
-           
-           frc.delegate = self
-           
-           do{
-               try frc.performFetch()
-           } catch {
-               fatalError("Error performing fetch for frc: \(error)")
-           }
-           
-           return frc
-           
-       }()
+        
+        //Create Fetch request
+        let fetchRequest: NSFetchRequest<DevLib> = DevLib.fetchRequest()
+        
+        //Sort the fetched results
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "lib", ascending: true)]
+        
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.share.mainContext, sectionNameKeyPath: "lib", cacheName: nil)
+        
+        frc.delegate = self
+        
+        do{
+            try frc.performFetch()
+        } catch {
+            fatalError("Error performing fetch for frc: \(error)")
+        }
+        
+        return frc
+        
+    }()
     
     // MARK: Private Funcs
     
@@ -65,31 +79,40 @@ class ProfileViewController: UIViewController {
         }
     }
 }
-    extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+    
+  func numberOfSections(in tableView: UITableView) -> Int {
+      return fetchResultController.sections?.count ?? 0
+  }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return fetchResultController.sections?[section].numberOfObjects ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LibCell", for: indexPath)
         
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 0
-        }
+        let lib = fetchResultController.object(at: indexPath)
+        cell.textLabel?.text = lib.lib
         
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            return UITableViewCell()
-        }
-        
-           
+        return cell
+    }
+    
+    
 }
 
 extension UIImageView {
-  public func maskCircle(anyImage: UIImage) {
-    self.contentMode = .scaleAspectFill
-    self.layer.cornerRadius = self.frame.height / 2
-    self.layer.masksToBounds = false
-    self.clipsToBounds = true
-
-   // make square(* must to make circle),
-   // resize(reduce the kilobyte) and
-   // fix rotation.
-   self.image = anyImage
-  }
+    public func maskCircle(anyImage: UIImage) {
+        self.contentMode = .scaleAspectFill
+        self.layer.cornerRadius = self.frame.height / 2
+        self.layer.masksToBounds = false
+        self.clipsToBounds = true
+        
+        // make square(* must to make circle),
+        // resize(reduce the kilobyte) and
+        // fix rotation.
+        self.image = anyImage
+    }
 }
 
 

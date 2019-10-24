@@ -150,18 +150,18 @@
                                     <segue destination="oe0-7w-oaF" kind="show" identifier="LoginSegue" id="S9c-8w-wU7"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Hon-NJ-Efd">
-                                <rect key="frame" x="93.5" y="833" width="227" height="33"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Hon-NJ-Efd">
+                                <rect key="frame" x="57" y="836" width="300.5" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To register please click " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnp-V9-DEF">
-                                        <rect key="frame" x="0.0" y="0.0" width="187" height="33"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you have not registered, please click" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnp-V9-DEF">
+                                        <rect key="frame" x="0.0" y="0.0" width="258.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRC-e2-EDV">
-                                        <rect key="frame" x="188" y="0.0" width="39" height="33"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="262.5" y="0.0" width="38" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="here.">
                                             <color key="titleColor" red="0.9987427592" green="0.51379561419999997" blue="0.093728445470000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
@@ -280,7 +280,7 @@
                                 </state>
                                 <connections>
                                     <action selector="nextButtonTapped:" destination="ukO-Yd-5qX" eventType="touchUpInside" id="w8j-Fz-nue"/>
-                                    <segue destination="3Sm-SE-IMy" kind="show" id="PJr-FW-QrW"/>
+                                    <segue destination="3Sm-SE-IMy" kind="show" identifier="NewLibDetailSegue" id="PJr-FW-QrW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -305,6 +305,7 @@
                     <navigationItem key="navigationItem" id="3ha-9U-dgT"/>
                     <connections>
                         <outlet property="nextButton" destination="aUd-HR-aFS" id="hPI-wk-qYT"/>
+                        <outlet property="partOfSpeechTextField" destination="eP1-Cq-otJ" id="c8c-my-2uj"/>
                         <outlet property="saveButton" destination="HdI-W6-HhK" id="n3n-o7-ebQ"/>
                         <outlet property="wordTypeLabel" destination="Onp-en-3jr" id="TtV-EA-42o"/>
                         <outlet property="wordTypeView" destination="4t0-bh-nBF" id="ec6-Xz-0nq"/>
@@ -435,7 +436,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sID-6M-2s9">
@@ -498,6 +499,6 @@
         <image name="icons8-user-24" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ILb-od-8x8"/>
+        <segue reference="PJr-FW-QrW"/>
     </inferredMetricsTieBreakers>
 </document>

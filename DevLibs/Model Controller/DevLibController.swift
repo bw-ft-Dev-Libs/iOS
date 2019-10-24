@@ -13,6 +13,9 @@ import CoreData
 
 class DevLibController {
     
+    
+    static let shared = DevLibController()
+    
     //MARK: Base API URL
     private let baseUrl = URL(string: "https://dev-libs-test.herokuapp.com")!
     

@@ -21,7 +21,7 @@ extension DevLib {
     }
     
     //MARK: - Convenience Initializer
-    @discardableResult convenience init(lib: String, id: Int32, categoryID: Int32, context: NSManagedObjectContext){
+    @discardableResult convenience init(lib: String, id: Int32 , categoryID: Int32, context: NSManagedObjectContext){
         
         self.init(context: context)
         

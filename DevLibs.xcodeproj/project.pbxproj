@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3835D4D92361029B0026CBF5 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3835D4D82361029B0026CBF5 /* UserDefaultsHelper.swift */; };
 		3850A802235DE72C009FD37A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850A801235DE72C009FD37A /* AppDelegate.swift */; };
 		3850A804235DE72C009FD37A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850A803235DE72C009FD37A /* SceneDelegate.swift */; };
 		3850A809235DE72C009FD37A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3850A807235DE72C009FD37A /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3835D4D82361029B0026CBF5 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		3850A7FE235DE72C009FD37A /* DevLibs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevLibs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3850A801235DE72C009FD37A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3850A803235DE72C009FD37A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			children = (
 				3850A83B235DE955009FD37A /* KeychainItemAccessibility.swift */,
 				3850A83D235DE982009FD37A /* KeychainWrapper.swift */,
+				3835D4D82361029B0026CBF5 /* UserDefaultsHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3835D4D92361029B0026CBF5 /* UserDefaultsHelper.swift in Sources */,
 				3850A842235DEA26009FD37A /* ProfileViewController.swift in Sources */,
 				45AB9298235F81F100619F0E /* User+Convenience .swift in Sources */,
 				45AB9294235F812400619F0E /* UserRepresentation.swift in Sources */,
