@@ -152,8 +152,8 @@ class DevLibController {
     
     
     //MARK: - CRUD Methods for Dev Lib
-    func createLib(lib: String, id: Int32, categoryID: Int32, context: NSManagedObjectContext){
-        let devLib = DevLib(lib: lib, id: id, categoryID: categoryID, context: context)
+    func createLib(lib: String, context: NSManagedObjectContext){
+        let devLib = DevLib(lib: lib, context: context)
         CoreDataStack.share.save()
         putLib(devLib: devLib)
         

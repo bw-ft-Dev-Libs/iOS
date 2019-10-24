@@ -35,7 +35,11 @@ class LibDetailViewController: UIViewController {
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         guard let lib = lib else {return}
         
-        #warning("Austin, your id peoperty should be optional. It is not given until you actually post to the server.")
-       // controller.createLib(lib: lib, id: <#T##Int32#>, categoryID: <#T##Int32#>, context: CoreDataStack.share.mainContext)
+        // your id peoperty should be optional. It is not given until you actually post to the server.")
+        controller.createLib(lib: lib, context: CoreDataStack.share.mainContext)
     }
+    
+    
+    
+    
 }
