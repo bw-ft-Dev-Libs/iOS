@@ -117,7 +117,7 @@ class LoginController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             if let response = response as? HTTPURLResponse,
-                response.statusCode != 200{
+                response.statusCode != 200 {
                 completion(.noData)
                 return
             }
@@ -137,6 +137,7 @@ class LoginController {
                 let bearer = try JSONDecoder().decode(Bearer.self, from: data)
                 
                 self.bearer = bearer
+                KeychainWrapper.standard.set(bearer.token, forKey: "bearer")
             } catch {
                 completion(.noData)
                 return
@@ -146,9 +147,5 @@ class LoginController {
             completion(nil)
         }.resume()
     }
-    
-    
- 
-   
     
 }
