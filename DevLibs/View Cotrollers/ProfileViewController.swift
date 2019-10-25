@@ -29,6 +29,13 @@ class ProfileViewController: UIViewController {
         libsTableView.delegate = self
         libsTableView.dataSource = self
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.usernameLabel.text = "Welcome back, \(KeychainWrapper.standard.string(forKey: "username") ?? "")!"
+
+    }
     
      @IBAction func unwindToInfo(_ unwindSegue: UIStoryboardSegue) {}
     
@@ -101,7 +108,6 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         
         let lib = fetchResultController.object(at: indexPath)
         cell.textLabel?.text = lib.lib
-        print(lib.lib)
         cell.textLabel?.textColor = .white
         return cell
     }

@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
     }
     
     func signIn(with user: UserRepresentation){
-        loginController.signIn(with: user, completion: { (error) in
+        loginController.signIn(with: user, completion: { (error, _)  in
             
             if let error = error {
                 NSLog("Error: \(error)")
@@ -71,6 +71,14 @@ class LoginViewController: UIViewController {
     
     private func setViews() {
         passwordTextField.isSecureTextEntry = true
+        
+        loginButton.layer.cornerRadius = 30
+        loginButton.layer.shadowColor = UIColor.white.cgColor
+        loginButton.layer.shadowOffset = CGSize(width: 0.0, height: 3.5)
+        loginButton.layer.shadowOpacity = 0.1
+        loginButton.layer.shadowRadius = 0.0
+        loginButton.layer.masksToBounds = false
+       
     }
     
     
@@ -109,18 +117,6 @@ class LoginViewController: UIViewController {
         } else {
             loginButton.setTitle("REGISTER", for: .normal)
             registerLoginLabel.text = "If you would like to login, please click"
-        }
-        
-        
-        
-    }
-    
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "" {
-            guard let destinationVC = segue.destination as? ProfileViewController  else {return}
         }
     }
 }

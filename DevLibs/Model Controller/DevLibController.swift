@@ -74,7 +74,7 @@ class DevLibController {
     
     
     //MARK: - Add DevLib to Server (PUT)
-    func putLib(devLib: DevLib, completion: @escaping ()-> Void = { }){
+    func putLib(devLib: DevLib, completion: @escaping ()-> Void = { }) {
         
         //Core Data needed
         
@@ -89,7 +89,7 @@ class DevLibController {
         
         //Conv. Init needed
         guard let libRepresentation = devLib.devLibRepresentation else {
-            NSLog("Entry Representation is nil")
+            NSLog("Lib Representation is nil")
             completion()
             return
         }
@@ -120,11 +120,6 @@ class DevLibController {
     //MARK: - Delete DevLib from Server (DELETE)
     func deleteDevLibFromServer(_ devLib: DevLib, completion: @escaping()-> Void = {}) {
         
-        
-        //           guard let identifer = devLib.id else {
-        //               completion()
-        //               return
-        //           }
         let identifier = String(devLib.id)
         
         let requestURL = baseUrl.appendingPathComponent(identifier).appendingPathExtension("json")
@@ -132,11 +127,11 @@ class DevLibController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.delete.rawValue
         
-        guard let libRepresentation = devLib.devLibRepresentation else {
-            NSLog("Entry Representation is nil")
-            completion()
-            return
-        }
+//        guard let libRepresentation = devLib.devLibRepresentation else {
+//            NSLog("Entry Representation is nil")
+//            completion()
+//            return
+//        }
         
         URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
@@ -154,8 +149,9 @@ class DevLibController {
     //MARK: - CRUD Methods for Dev Lib
     func createLib(lib: String, context: NSManagedObjectContext){
         let devLib = DevLib(lib: lib, context: context)
-        CoreDataStack.share.save()
         putLib(devLib: devLib)
+        CoreDataStack.share.save()
+        
         
     }
     

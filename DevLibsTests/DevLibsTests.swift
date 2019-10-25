@@ -10,25 +10,31 @@ import XCTest
 @testable import DevLibs
 
 class DevLibsTests: XCTestCase {
+    
+    
+    var bearer: Bearer?
+    
+    // Test for token
+    // Test Register/Login
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testLogin() {
+        
+        let mock = MockDataLoader()
+        mock.data = validBearerJSON
+        
+        let controller = LoginController(dataLoader: mock)
+        let resultsExpectation = expectation(description: "wait for results")
+        
+        let user = UserRepresentation(username: "demo1", password: "demo1")
+        controller.signIn(with: user) { (error, bearer) in
+            self.bearer = bearer
+            resultsExpectation.fulfill()
         }
+       
+        wait(for: [resultsExpectation], timeout: 2)
+        
+        XCTAssertNotNil(bearer)
+        XCTAssertTrue(bearer?.username == "demo1")
     }
 
 }

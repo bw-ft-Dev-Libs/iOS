@@ -29,7 +29,7 @@ class CreateLibViewController: UIViewController {
     
     // MARK: Properties
     
-    var duration: Double { return 0.25 }
+    var duration: Double { return 1 }
     var isDoneWithLib: Bool = false
     
     var partsOfSpeech: [PartsOfSpeech] = [.nounPerson, .noun, .verb, .adverb, .nounPerson, .adjective, .noun]
@@ -145,20 +145,23 @@ class CreateLibViewController: UIViewController {
     // MARK: Private Funcs
     
     private func moveOff(view: UIView) {
-        view.center.y -= 400
-    }
-    
-    private func moveOn(view: UIView) {
         view.center.y += 400
     }
     
+    private func moveOn(view: UIView) {
+        view.center.y -= 400
+    }
+    
     private func animateView() {
+        
         UIView.animate(withDuration: duration, delay: 0, options: .autoreverse, animations: {
             self.moveOff(view: self.wordTypeView)
             self.partOfSpeechTextField.text = ""
             
         }) { (_) in
+            
             self.moveOn(view: self.wordTypeView)
+            
         }
     }
     
@@ -172,7 +175,7 @@ class CreateLibViewController: UIViewController {
         
         wordTypeView.layer.cornerRadius = 6
         
-        nextButton.layer.cornerRadius = 6
+        nextButton.layer.cornerRadius = 20
         
         wordTypeView.center = CGPoint(x: view.frame.width/2, y: -view.frame.height/2)
         
