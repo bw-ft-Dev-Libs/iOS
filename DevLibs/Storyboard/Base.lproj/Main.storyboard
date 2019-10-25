@@ -182,8 +182,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <segue destination="3Sm-SE-IMy" kind="show" identifier="LibDetailSegue" id="ILb-od-8x8"/>
                                         </connections>
@@ -321,6 +322,6 @@
         <image name="Untitled design-3" width="1080" height="1920"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PJr-FW-QrW"/>
+        <segue reference="ILb-od-8x8"/>
     </inferredMetricsTieBreakers>
 </document>

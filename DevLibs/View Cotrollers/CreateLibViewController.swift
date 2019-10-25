@@ -64,73 +64,80 @@ class CreateLibViewController: UIViewController {
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
                     nounPerson = text
                     
-                    self.animateView()
-                    
+//                    self.animateView()
+                    self.partOfSpeechTextField.text = ""
+
                     count += 1
                     wordTypeLabel.text = partsOfSpeech[1].rawValue
                     
                 case 1:
-                    
+
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
                     noun = text
-                    
-                    self.animateView()
-                    
+
+//                    self.animateView()
+                    self.partOfSpeechTextField.text = ""
+
                     count += 1
                     wordTypeLabel.text = partsOfSpeech[2].rawValue
-                    
+
                 case 2:
-                    
+
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
                     verb = text
-                    
-                    self.animateView()
-                    
+
+//                    self.animateView()
+                    self.partOfSpeechTextField.text = ""
+
                     count += 1
                     wordTypeLabel.text = partsOfSpeech[3].rawValue
-                    
+
                 case 3:
-                    
+
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
-                    
+
                     adverb = text
-                    
-                    self.animateView()
-                    
+
+//                    self.animateView()
+                    self.partOfSpeechTextField.text = ""
+
                     count += 1
                     wordTypeLabel.text = partsOfSpeech[4].rawValue
-                    
+
                 case 4:
-                    
+
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
                     nounPerson2 = text
-                    
-                    self.animateView()
-                    
+
+//                    self.animateView()
+                    self.partOfSpeechTextField.text = ""
+
                     count += 1
                     wordTypeLabel.text = partsOfSpeech[5].rawValue
-                    
+
                 case 5:
-                    
+
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
                     adjective = text
-                    
-                    self.animateView()
-                    
+
+//                    self.animateView()
+                    self.partOfSpeechTextField.text = ""
+
                     count += 1
                     wordTypeLabel.text = partsOfSpeech[6].rawValue
-                    
+
                 case 6:
-                    
+
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
                     noun2 = text
-                    
-                    self.animateView()
-                    
+
+//                    self.animateView()
+                    self.partOfSpeechTextField.text = ""
+
                     isDoneWithLib = true
-                    
+
                     let lib = "On a cold December morning in 2009, my \(nounPerson) asked me to implement a new feature. He wanted his \(noun) to \(verb) \(adverb). I said no worries \(nounPerson2), I can have that done in a week. Just this year (2019) I called my \(adjective) \(noun2) and told him there was now a cocoaPod for that. Sorry sir!"
-                    
+
                     self.lib = lib
                 default:
                     break
@@ -154,13 +161,17 @@ class CreateLibViewController: UIViewController {
     
     private func animateView() {
         
-        UIView.animate(withDuration: duration, delay: 0, options: .autoreverse, animations: {
-            self.moveOff(view: self.wordTypeView)
+        print(wordTypeView.frame.origin)
+        wordTypeView.frame.origin = CGPoint(x: 34.5, y: 225)
+        
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: {
+            
+            self.moveOn(view: self.wordTypeView)
             self.partOfSpeechTextField.text = ""
             
         }) { (_) in
             
-            self.moveOn(view: self.wordTypeView)
+            self.moveOff(view: self.wordTypeView)
             
         }
     }
@@ -177,10 +188,10 @@ class CreateLibViewController: UIViewController {
         
         nextButton.layer.cornerRadius = 20
         
-        wordTypeView.center = CGPoint(x: view.frame.width/2, y: -view.frame.height/2)
+//        wordTypeView.center = CGPoint(x: view.frame.width/2, y: -view.frame.height/2)
         
-        UIView.animate(withDuration: duration, delay: 0, options: .autoreverse, animations: {
-            self.moveOn(view: self.wordTypeView)})
+      //  UIView.animate(withDuration: duration, delay: 0, options: .autoreverse, animations: {
+           // self.moveOn(view: self.wordTypeView)})
         
     }
     

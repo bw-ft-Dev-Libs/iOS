@@ -15,7 +15,7 @@ extension DevLib {
     //MARK: - Initializing Core Data Model Representation
     var devLibRepresentation: DevLibRepresentation? {
         guard let lib = lib
-             else {return nil}
+            else {return nil}
         
         return DevLibRepresentation(lib: lib, id: id, categoryID: categoryID)
     }
@@ -25,15 +25,13 @@ extension DevLib {
         
         self.init(context: context)
         
-
-        guard let id = id,
-            let categoryID = categoryID else {return}
-        
-        
-        
         self.lib = lib
-        self.id = id
-        self.categoryID = categoryID
+        
+        if let id = id,
+            let categoryID = categoryID {
+            self.id = id
+            self.categoryID = categoryID
+        }
         
     }
     
