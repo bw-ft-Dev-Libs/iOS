@@ -21,6 +21,8 @@ class ProfileViewController: UIViewController {
     
     let token: String? = KeychainWrapper.standard.string(forKey: "bearer")
     
+    let loggedIn = UserDefaults.standard.bool(forKey: "LoggedIn")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
@@ -28,18 +30,11 @@ class ProfileViewController: UIViewController {
         libsTableView.dataSource = self
     }
     
+     @IBAction func unwindToInfo(_ unwindSegue: UIStoryboardSegue) {}
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        DispatchQueue.main.async {
-            if self.token == nil {
-                self.performSegue(withIdentifier: "LoginSegue", sender: self)
-            }
-        }
-    }
-    
-    
+
     //MARK: - Fetch Results Controller
+    
     lazy var fetchResultController: NSFetchedResultsController<DevLib> = {
         
         //Create Fetch request
@@ -65,25 +60,37 @@ class ProfileViewController: UIViewController {
     // MARK: Private Funcs
     
     private func setViews() {
-        profileImageView.maskCircle(anyImage: profileImageView.image ?? UIImage(named: "avatar")!)
+        
+        
+        DispatchQueue.main.async {
+            
+            self.usernameLabel.text = "Welcome back, \(KeychainWrapper.standard.string(forKey: "username") ?? "")!"
+            
+            if self.loggedIn == false {
+                self.performSegue(withIdentifier: "LoginSegue", sender: self)
+            }
+        }
+        profileImageView.maskCircle(anyImage: profileImageView.image ?? UIImage(named: "woman")!)
+        
+        addLibButton.layer.cornerRadius = 14
     }
     
     // MARK: - Navigation
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "" {
-            guard let destinationVC = segue.destination as? LibDetailViewController  else {return}
-        } else  if segue.identifier == "" {
-            guard let destinationVC = segue.destination as? CreateLibViewController  else {return}
+        if segue.identifier == "LibDetailSegue" {
+            guard let destinationVC = segue.destination as? LibDetailViewController,
+                let indexPath = libsTableView.indexPathForSelectedRow  else {return}
+            destinationVC.devLib = fetchResultController.object(at: indexPath)
         }
     }
 }
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
-  func numberOfSections(in tableView: UITableView) -> Int {
-      return fetchResultController.sections?.count ?? 0
-  }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return fetchResultController.sections?.count ?? 0
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchResultController.sections?[section].numberOfObjects ?? 0
@@ -94,7 +101,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         
         let lib = fetchResultController.object(at: indexPath)
         cell.textLabel?.text = lib.lib
-        
+        print(lib.lib)
+        cell.textLabel?.textColor = .white
         return cell
     }
     

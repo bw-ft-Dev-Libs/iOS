@@ -9,7 +9,7 @@
 import UIKit
 
 class LibDetailViewController: UIViewController {
-
+    
     
     // MARK: IBOutlets
     
@@ -19,21 +19,29 @@ class LibDetailViewController: UIViewController {
     
     let controller = DevLibController.shared
     
+    var devLib: DevLib?
+    
     var lib: String?
     
     override func viewDidLoad() {
-          super.viewDidLoad()
-          setViews()
-      }
+        super.viewDidLoad()
+        setViews()
+    }
     
     private func setViews() {
-        guard let lib = lib else {return}
-        libTextView.text = lib
-        libTitle.text = "I can do that in a week!"
+        if let devLib = devLib {
+            libTitle.text = "I can do that in a week!"
+            libTextView.text = devLib.lib
+            
+        } else {
+            guard let lib = lib else {return}
+            libTextView.text = lib
+            libTitle.text = "I can do that in a week!"
+        }
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        guard let lib = lib else {return}
+        guard let lib = libTextView.text else {return}
         
         // your id peoperty should be optional. It is not given until you actually post to the server.")
         controller.createLib(lib: lib, context: CoreDataStack.share.mainContext)

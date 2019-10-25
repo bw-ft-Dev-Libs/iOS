@@ -43,11 +43,7 @@ class LoginViewController: UIViewController {
                 NSLog("Error signing up \(error)")
             }
             
-            self.loginController.signIn(with: user) { (error) in
-                if let error = error{
-                    NSLog("Error signing up \(error)")
-                }
-            }
+            self.signIn(with: user)
             
         })
         
@@ -55,11 +51,14 @@ class LoginViewController: UIViewController {
     
     func signIn(with user: UserRepresentation){
         loginController.signIn(with: user, completion: { (error) in
+            
             if let error = error {
                 NSLog("Error: \(error)")
                 
+                
             } else {
                 DispatchQueue.main.async {
+                    UserDefaults.standard.set(true, forKey: "LoggedIn")
                     self.dismiss(animated: true, completion: nil)
                 }
             }

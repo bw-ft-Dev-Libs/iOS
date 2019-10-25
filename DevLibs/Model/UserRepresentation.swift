@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 //MARK: - User Core Data Model Representation
 struct UserRepresentation: Codable {
     
