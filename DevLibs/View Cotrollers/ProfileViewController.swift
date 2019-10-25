@@ -61,24 +61,28 @@ class ProfileViewController: UIViewController {
     
     private func setViews() {
         
-        usernameLabel.text = KeychainWrapper.standard.string(forKey: "username")
         
         DispatchQueue.main.async {
+            
+            self.usernameLabel.text = "Welcome back, \(KeychainWrapper.standard.string(forKey: "username") ?? "")!"
+            
             if self.loggedIn == false {
                 self.performSegue(withIdentifier: "LoginSegue", sender: self)
             }
         }
-        profileImageView.maskCircle(anyImage: profileImageView.image ?? UIImage(named: "avatar")!)
+        profileImageView.maskCircle(anyImage: profileImageView.image ?? UIImage(named: "woman")!)
+        
+        addLibButton.layer.cornerRadius = 14
     }
     
     // MARK: - Navigation
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "" {
-            guard let destinationVC = segue.destination as? LibDetailViewController  else {return}
-        } else  if segue.identifier == "" {
-            guard let destinationVC = segue.destination as? CreateLibViewController  else {return}
+        if segue.identifier == "LibDetailSegue" {
+            guard let destinationVC = segue.destination as? LibDetailViewController,
+                let indexPath = libsTableView.indexPathForSelectedRow  else {return}
+            destinationVC.devLib = fetchResultController.object(at: indexPath)
         }
     }
 }
@@ -97,7 +101,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         
         let lib = fetchResultController.object(at: indexPath)
         cell.textLabel?.text = lib.lib
-        
+        print(lib.lib)
+        cell.textLabel?.textColor = .white
         return cell
     }
     

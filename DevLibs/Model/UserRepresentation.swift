@@ -8,9 +8,6 @@
 
 import Foundation
 
-struct Results: Codable {
-    let token: String
-}
 //MARK: - User Core Data Model Representation
 struct UserRepresentation: Codable {
     

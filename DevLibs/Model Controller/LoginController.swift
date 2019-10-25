@@ -83,15 +83,7 @@ class LoginController {
                 completion(.otherError(error))
                 return
             }
-            guard let data = data else {return}
             
-            do {
-            let user =    try JSONDecoder().decode(UserRepresentation.self, from: data)
-            KeychainWrapper.standard.set(user.username, forKey: "username")
-                
-            } catch {
-                NSLog("Error decoding user \(error)")
-            }
             completion(nil)
         }.resume()
         
@@ -148,6 +140,8 @@ class LoginController {
                 self.bearer = bearer
                 
                 KeychainWrapper.standard.set(bearer.token, forKey: "bearer")
+                KeychainWrapper.standard.set(user.username, forKey: "username")
+
             } catch {
                 completion(.noData)
                 return
