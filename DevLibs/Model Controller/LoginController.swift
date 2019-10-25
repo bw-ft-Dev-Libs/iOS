@@ -33,6 +33,11 @@ enum HeaderNames: String {
 
 class LoginController {
     
+    var dataLoader: NetworkDataLoader
+    
+    init(dataLoader: NetworkDataLoader = URLSession.shared) {
+        self.dataLoader = dataLoader
+    }
     
     var bearer: Bearer?
     
@@ -46,8 +51,8 @@ class LoginController {
         
         //Build the URL
         let requestURL = baseUrl.appendingPathComponent("api")
-                                .appendingPathComponent("auth")
-                                .appendingPathComponent("register")
+            .appendingPathComponent("auth")
+            .appendingPathComponent("register")
         
         //Build the request
         var request = URLRequest(url: requestURL)
@@ -60,7 +65,7 @@ class LoginController {
         let encoder = JSONEncoder()
         
         do {
-           let userJSON = try encoder.encode(user)
+            let userJSON = try encoder.encode(user)
             request.httpBody = userJSON
         } catch {
             NSLog("Error encoding data: \(error)")
@@ -92,12 +97,12 @@ class LoginController {
     
     
     //MARK: - Login the User (POST)
-    func signIn(with user: UserRepresentation, completion: @escaping(NetworkError?)-> Void){
+    func signIn(with user: UserRepresentation, completion: @escaping(NetworkError?, Bearer?)-> Void){
         
         //Build Url
         let loginURL = baseUrl.appendingPathComponent("api")
-                              .appendingPathComponent("auth")
-                              .appendingPathComponent("login")
+            .appendingPathComponent("auth")
+            .appendingPathComponent("login")
         
         //Build request
         var request = URLRequest(url: loginURL)
@@ -110,7 +115,7 @@ class LoginController {
             request.httpBody = try encoder.encode(user)
         } catch {
             NSLog("Error: \(error)")
-            completion(.ecodingError)
+            completion(.ecodingError, nil)
             return
         }
         
@@ -119,18 +124,18 @@ class LoginController {
             
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                completion(.noData)
+                completion(.noData, nil)
                 return
             }
             
             if let error = error {
                 NSLog("Error fetching data tasks: \(error)")
-                completion(.otherError(error))
+                completion(.otherError(error), nil)
                 return
             }
             
             guard let data = data else {
-                completion(.noData)
+                completion(.noData, nil)
                 return
             }
             
@@ -141,14 +146,14 @@ class LoginController {
                 
                 KeychainWrapper.standard.set(bearer.token, forKey: "bearer")
                 KeychainWrapper.standard.set(user.username, forKey: "username")
-
+                
             } catch {
-                completion(.noData)
+                completion(.noData, nil)
                 return
                 
             }
             
-            completion(nil)
+            completion(nil, self.bearer)
         }.resume()
     }
     

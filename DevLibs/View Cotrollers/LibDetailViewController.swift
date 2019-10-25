@@ -29,6 +29,7 @@ class LibDetailViewController: UIViewController {
     }
     
     private func setViews() {
+        saveLibButton.layer.cornerRadius = 30
         if let devLib = devLib {
             libTitle.text = "I can do that in a week!"
             libTextView.text = devLib.lib

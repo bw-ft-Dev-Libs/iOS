@@ -39,13 +39,13 @@ class CoreDataStack {
         
         context.performAndWait {
             
-        
-        do{
-            try context.save()
-        } catch {
-            NSLog("Error saving context \(error)")
-            context.reset()
-        }
+            
+            do{
+                try context.save()
+            } catch {
+                NSLog("Error saving context \(error)")
+                context.reset()
+            }
         }
     }
     
