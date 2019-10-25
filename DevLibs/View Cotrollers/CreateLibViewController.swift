@@ -48,6 +48,7 @@ class CreateLibViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setViews()
     }
     
@@ -60,108 +61,75 @@ class CreateLibViewController: UIViewController {
                 switch count {
                 case 0:
                     
-                    wordTypeLabel.text = partsOfSpeech[0].rawValue
-                    
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
                     nounPerson = text
                     
-                    UIView.animate(withDuration: duration, delay: 0, options: .autoreverse, animations: {
-                        self.moveOff(view: self.wordTypeView)
-                        self.partOfSpeechTextField.text = ""
-                        
-                    }) { (_) in
-                        self.moveOn(view: self.wordTypeView)
-                    }
+                    self.animateView()
                     
                     count += 1
+                    wordTypeLabel.text = partsOfSpeech[1].rawValue
                     
                 case 1:
-                    wordTypeLabel.text = partsOfSpeech[1].rawValue
                     
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
                     noun = text
                     
-                    UIView.animate(withDuration: duration, delay: 0, options: .autoreverse, animations: {
-                        self.moveOff(view: self.wordTypeView)
-                        self.partOfSpeechTextField.text = ""
-                        
-                    }) { (_) in
-                        self.moveOn(view: self.wordTypeView)
-                    }
+                    self.animateView()
+                    
                     count += 1
-                case 2:
                     wordTypeLabel.text = partsOfSpeech[2].rawValue
+                    
+                case 2:
                     
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
                     verb = text
                     
-                    UIView.animate(withDuration: duration, delay: 0, options: .autoreverse, animations: {
-                        self.moveOff(view: self.wordTypeView)
-                        self.partOfSpeechTextField.text = ""
-                        
-                    }) { (_) in
-                        self.moveOn(view: self.wordTypeView)
-                    }
+                    self.animateView()
+                    
                     count += 1
-                case 3:
                     wordTypeLabel.text = partsOfSpeech[3].rawValue
+                    
+                case 3:
                     
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
                     
                     adverb = text
                     
-                    UIView.animate(withDuration: duration, delay: 0, options: .autoreverse, animations: {
-                        self.moveOff(view: self.wordTypeView)
-                        self.partOfSpeechTextField.text = ""
-                        
-                    }) { (_) in
-                        self.moveOn(view: self.wordTypeView)
-                    }
+                    self.animateView()
+                    
                     count += 1
-                case 4:
                     wordTypeLabel.text = partsOfSpeech[4].rawValue
+                    
+                case 4:
                     
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
                     nounPerson2 = text
                     
-                    UIView.animate(withDuration: duration, delay: 0, options: .autoreverse, animations: {
-                        self.moveOff(view: self.wordTypeView)
-                        self.partOfSpeechTextField.text = ""
-                        
-                    }) { (_) in
-                        self.moveOn(view: self.wordTypeView)
-                    }
+                    self.animateView()
+                    
                     count += 1
-                case 5:
                     wordTypeLabel.text = partsOfSpeech[5].rawValue
+                    
+                case 5:
                     
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
                     adjective = text
                     
-                    UIView.animate(withDuration: duration, delay: 0, options: .autoreverse, animations: {
-                        self.moveOff(view: self.wordTypeView)
-                        self.partOfSpeechTextField.text = ""
-                        
-                    }) { (_) in
-                        self.moveOn(view: self.wordTypeView)
-                    }
+                    self.animateView()
+                    
                     count += 1
-                case 6:
                     wordTypeLabel.text = partsOfSpeech[6].rawValue
+                    
+                case 6:
                     
                     guard let text = partOfSpeechTextField.text, !text.isEmpty else {return}
                     noun2 = text
                     
-                    UIView.animate(withDuration: duration, delay: 0, options: .autoreverse, animations: {
-                        self.moveOff(view: self.wordTypeView)
-                        self.partOfSpeechTextField.text = ""
-                        
-                    }) { (_) in
-                        self.moveOn(view: self.wordTypeView)
-                    }
+                    self.animateView()
+                    
                     isDoneWithLib = true
                     
-                     let lib = "On a cold December morning in 2009, my \(nounPerson) asked me to implement a new feature. He wanted his \(noun) to \(verb) \(adverb). I said no worries \(nounPerson2), I can have that done in a week. Just this year (2019) I called my \(adjective) \(noun2) and told him there was now a cocoaPod for that. Sorry sir!"
+                    let lib = "On a cold December morning in 2009, my \(nounPerson) asked me to implement a new feature. He wanted his \(noun) to \(verb) \(adverb). I said no worries \(nounPerson2), I can have that done in a week. Just this year (2019) I called my \(adjective) \(noun2) and told him there was now a cocoaPod for that. Sorry sir!"
                     
                     self.lib = lib
                 default:
@@ -184,7 +152,18 @@ class CreateLibViewController: UIViewController {
         view.center.y += 400
     }
     
+    private func animateView() {
+        UIView.animate(withDuration: duration, delay: 0, options: .autoreverse, animations: {
+            self.moveOff(view: self.wordTypeView)
+            self.partOfSpeechTextField.text = ""
+            
+        }) { (_) in
+            self.moveOn(view: self.wordTypeView)
+        }
+    }
+    
     private func setViews() {
+        
         saveButton.isHidden = true
         
         count = 0

@@ -21,6 +21,8 @@ class ProfileViewController: UIViewController {
     
     let token: String? = KeychainWrapper.standard.string(forKey: "bearer")
     
+    let loggedIn = UserDefaults.standard.bool(forKey: "LoggedIn")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
@@ -28,18 +30,11 @@ class ProfileViewController: UIViewController {
         libsTableView.dataSource = self
     }
     
+     @IBAction func unwindToInfo(_ unwindSegue: UIStoryboardSegue) {}
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        DispatchQueue.main.async {
-            if self.token == nil {
-                self.performSegue(withIdentifier: "LoginSegue", sender: self)
-            }
-        }
-    }
-    
-    
+
     //MARK: - Fetch Results Controller
+    
     lazy var fetchResultController: NSFetchedResultsController<DevLib> = {
         
         //Create Fetch request
@@ -65,6 +60,14 @@ class ProfileViewController: UIViewController {
     // MARK: Private Funcs
     
     private func setViews() {
+        
+        usernameLabel.text = KeychainWrapper.standard.string(forKey: "username")
+        
+        DispatchQueue.main.async {
+            if self.loggedIn == false {
+                self.performSegue(withIdentifier: "LoginSegue", sender: self)
+            }
+        }
         profileImageView.maskCircle(anyImage: profileImageView.image ?? UIImage(named: "avatar")!)
     }
     
@@ -81,9 +84,9 @@ class ProfileViewController: UIViewController {
 }
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
-  func numberOfSections(in tableView: UITableView) -> Int {
-      return fetchResultController.sections?.count ?? 0
-  }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return fetchResultController.sections?.count ?? 0
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchResultController.sections?[section].numberOfObjects ?? 0
