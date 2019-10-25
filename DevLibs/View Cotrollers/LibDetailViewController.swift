@@ -9,22 +9,46 @@
 import UIKit
 
 class LibDetailViewController: UIViewController {
-
+    
+    
+    // MARK: IBOutlets
+    
+    @IBOutlet weak var libTextView: UITextView!
+    @IBOutlet weak var libTitle: UILabel!
+    @IBOutlet weak var saveLibButton: UIButton!
+    
+    let controller = DevLibController.shared
+    
+    var devLib: DevLib?
+    
+    var lib: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setViews()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setViews() {
+        saveLibButton.layer.cornerRadius = 30
+        if let devLib = devLib {
+            libTitle.text = "I can do that in a week!"
+            libTextView.text = devLib.lib
+            
+        } else {
+            guard let lib = lib else {return}
+            libTextView.text = lib
+            libTitle.text = "I can do that in a week!"
+        }
     }
-    */
-
+    
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
+        guard let lib = libTextView.text else {return}
+        
+        // your id peoperty should be optional. It is not given until you actually post to the server.")
+        controller.createLib(lib: lib, context: CoreDataStack.share.mainContext)
+    }
+    
+    
+    
+    
 }
